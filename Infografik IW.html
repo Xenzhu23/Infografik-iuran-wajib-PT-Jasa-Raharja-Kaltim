@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografik: Analisis Iuran Wajib Jasa Raharja di Kalimantan Timur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+            border-left: 5px solid;
+        }
+        .flow-step {
+            background-color: #E0E7FF;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: #3730A3;
+            border: 2px dashed #6366F1;
+        }
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #6366F1;
+            margin: 0.5rem 0;
+        }
+        .swot-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .gemini-card {
+            background-color: #E0F7FA;
+            border-left: 4px solid #00BCD4;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-[#073B4C]">Analisis Iuran Wajib Jasa Raharja di Kaltim</h1>
+            <p class="text-md text-[#118AB2]">Menavigasi Peluang & Tantangan di Era Pembangunan IKN (Jan-Jul 2025)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="introduction" class="mb-12 text-center">
+            <h2 class="text-3xl font-extrabold text-[#073B4C] mb-4">Mesin Pertumbuhan Kaltim: Dampak Ibu Kota Nusantara (IKN)</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">Pembangunan IKN memacu pertumbuhan ekonomi dan demografi yang luar biasa di Kalimantan Timur, menciptakan lanskap yang dinamis bagi penerimaan Iuran Wajib Kendaraan Bermotor Umum (IWKBU) dan Iuran Wajib Kapal Laut (IWKL) PT Jasa Raharja.</p>
+        </section>
+
+        <section id="kpi" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div class="kpi-card border-[#06D6A0]">
+                <h3 class="text-xl font-semibold text-gray-500 mb-2">Proyeksi Pertumbuhan Ekonomi Kaltim 2025</h3>
+                <p class="text-5xl font-extrabold text-[#073B4C]">6.5-7%</p>
+                <p class="text-sm text-gray-500 mt-2">Didorong oleh investasi masif di IKN</p>
+            </div>
+            <div class="kpi-card border-[#FFD166]">
+                <h3 class="text-xl font-semibold text-gray-500 mb-2">Target Populasi IKN 2025</h3>
+                <p class="text-5xl font-extrabold text-[#073B4C]">800.000</p>
+                <p class="text-lg font-bold text-[#073B4C]">jiwa</p>
+                <p class="text-sm text-gray-500 mt-2">Menciptakan basis penumpang baru yang masif</p>
+            </div>
+            <div class="kpi-card border-[#FF6B6B]">
+                <h3 class="text-xl font-semibold text-gray-500 mb-2">Pertumbuhan Penumpang Laut (Jan-Mei 2025)</h3>
+                <p class="text-5xl font-extrabold text-[#073B4C]">+35.94%</p>
+                <p class="text-sm text-gray-500 mt-2">Dibandingkan periode yang sama tahun 2024</p>
+            </div>
+        </section>
+
+        <section id="revenue-trends" class="bg-white rounded-lg shadow-md p-6 mb-12">
+            <h2 class="text-2xl font-bold text-center text-[#073B4C] mb-4">Ritme Penerimaan Iuran Wajib Bulanan (Jan-Jun 2025)</h2>
+            <p class="text-center text-gray-600 mb-6">Penerimaan iuran menunjukkan pola musiman yang kuat, dengan puncak signifikan selama periode hari raya besar. Model peramalan berhasil menangkap tren ini dengan baik, yang krusial untuk perencanaan keuangan.</p>
+            <div class="chart-container h-96">
+                <canvas id="monthlyRevenueChart"></canvas>
+            </div>
+            <div class="mt-8 text-center">
+                <button id="analyzeChartBtn" class="bg-[#118AB2] hover:bg-[#073B4C] text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
+                    Analisis Tren dengan AI ✨
+                </button>
+            </div>
+            <div id="monthlyRevenueInsight" class="mt-6 p-4 rounded-lg gemini-card text-gray-700 hidden">
+                <p id="insightContent"></p>
+                <p id="insightLoader" class="animate-pulse text-sm text-gray-500">Memuat analisis...</p>
+            </div>
+        </section>
+        
+        <section id="transport-deep-dive" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="swot-card">
+                <h2 class="text-2xl font-bold text-center text-[#073B4C] mb-4">IWKBU (Darat): Pertarungan di Jalan Raya 🚗 vs 🚌</h2>
+                <p class="text-center text-gray-600 mb-6">Meskipun populasi meningkat, pertumbuhan IWKBU menghadapi tantangan berat dari lonjakan kepemilikan kendaraan pribadi dan adanya regulasi pengecualian iuran di dalam kota.</p>
+                <div class="chart-container h-80">
+                    <canvas id="vehicleGrowthChart"></canvas>
+                </div>
+                 <div class="mt-8">
+                    <h3 class="font-bold text-lg text-center mb-4">Alur Pengecualian IWKBU "Dalam Kota"</h3>
+                    <div class="flex flex-col items-center">
+                        <div class="flow-step w-full md:w-3/4">Penumpang Naik Angkutan Umum</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step w-full md:w-3/4">Apakah Rute "Dalam Kota"?</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="grid grid-cols-2 gap-4 w-full md:w-3/4">
+                            <div class="bg-red-100 p-4 rounded-lg text-center">
+                                <p class="font-bold text-red-700">YA</p>
+                                <p class="text-sm text-red-600">Dibebaskan dari Iuran Wajib (Menurut UU No. 33/1964)</p>
+                            </div>
+                            <div class="bg-green-100 p-4 rounded-lg text-center">
+                                <p class="font-bold text-green-700">TIDAK</p>
+                                <p class="text-sm text-green-600">Iuran Wajib (IWKBU) Dikenakan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swot-card">
+                <h2 class="text-2xl font-bold text-center text-[#073B4C] mb-4">IWKL (Laut): Gelombang Pertumbuhan Positif 🚢</h2>
+                <p class="text-center text-gray-600 mb-6">Sektor transportasi laut menunjukkan tren pertumbuhan penumpang yang sangat kuat, menjadikannya area fokus utama untuk optimalisasi penerimaan Iuran Wajib Kapal Laut (IWKL).</p>
+                <div class="chart-container h-80">
+                    <canvas id="seaPassengerChart"></canvas>
+                </div>
+                <div class="mt-8">
+                    <h3 class="font-bold text-lg text-center mb-4">Analisis Peluang IWKL</h3>
+                     <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-green-500 font-bold text-2xl mr-3">✔</span>
+                            <div>
+                                <h4 class="font-semibold">Pertumbuhan Kumulatif Kuat</h4>
+                                <p class="text-gray-600">Kenaikan penumpang kumulatif sebesar 35.94% (Jan-Mei 2025 vs 2024) menandakan permintaan yang solid dan berkelanjutan.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 font-bold text-2xl mr-3">✔</span>
+                            <div>
+                                <h4 class="font-semibold">Pendorong Logistik IKN</h4>
+                                <p class="text-gray-600">Peningkatan aktivitas logistik dan mobilitas pekerja untuk proyek IKN menjadi katalis utama pertumbuhan penumpang laut.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <span class="text-green-500 font-bold text-2xl mr-3">✔</span>
+                            <div>
+                                <h4 class="font-semibold">Potensi Pariwisata</h4>
+                                <p class="text-gray-600">Seiring berkembangnya wilayah, potensi pariwisata bahari dapat menjadi sumber pertumbuhan penumpang baru yang signifikan.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="policy" class="bg-white rounded-lg shadow-md p-6 mb-12">
+            <h2 class="text-2xl font-bold text-center text-[#073B4C] mb-4">Lanskap Kebijakan: Program "Gratispol" 2025</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Pemerintah Provinsi Kaltim meluncurkan program pemutihan pajak kendaraan. Namun, penting untuk dipahami bahwa kebijakan ini tidak berdampak langsung pada penerimaan IWKBU atau IWKL.</p>
+            <div class="max-w-md mx-auto bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h3 class="font-bold text-lg text-center mb-4">Cakupan Pemutihan Pajak (8 Apr - 30 Jun 2025)</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center bg-green-100 p-3 rounded-md">
+                        <span class="text-2xl mr-3">✅</span>
+                        <p class="font-semibold text-green-800">Termasuk: Denda & Tunggakan Pokok Pajak Kendaraan Bermotor (PKB)</p>
+                    </div>
+                    <div class="flex items-center bg-red-100 p-3 rounded-md">
+                        <span class="text-2xl mr-3">❌</span>
+                        <p class="font-semibold text-red-800">Tidak Termasuk: Sumbangan Wajib (SWDKLLJ)</p>
+                    </div>
+                </div>
+                <p class="text-xs text-center mt-4 text-gray-500">Dampak pada IWKBU/IWKL bersifat tidak langsung, yaitu melalui potensi peningkatan budaya kepatuhan secara umum.</p>
+            </div>
+        </section>
+
+        <section id="recommendations" class="bg-white rounded-lg shadow-md p-6 mb-12 text-center">
+            <h2 class="text-2xl font-bold text-[#073B4C] mb-4">Rekomendasi Strategis untuk Pertumbuhan</h2>
+            <p class="text-gray-600 mb-6">Dapatkan rekomendasi berbasis AI untuk meningkatkan pendapatan dari IWKBU dan IWKL di tengah dinamika pembangunan IKN.</p>
+            <button id="generateRecommendationsBtn" class="bg-[#FF6B6B] hover:bg-[#FFD166] text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
+                Dapatkan Rekomendasi ✨
+            </button>
+            <div id="recommendationsContainer" class="mt-6 p-4 rounded-lg gemini-card text-gray-700 hidden text-left">
+                <p id="recommendationsContent"></p>
+                <p id="recommendationsLoader" class="animate-pulse text-sm text-gray-500">Memuat rekomendasi...</p>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-[#073B4C] text-white mt-12 py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Analisis Data Visual. Dibuat untuk PT Jasa Raharja.</p>
+            <p class="text-xs text-gray-400 mt-2">Infografik ini dibuat berdasarkan data publik dan analisis hingga Juli 2025. Tidak ada SVG atau Mermaid JS yang digunakan dalam pembuatan visualisasi ini.</p>
+        </div>
+    </footer>
+
+    <script>
+        const energeticPlayfulPalette = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            background: 'rgba(6, 214, 160, 0.2)',
+            background2: 'rgba(255, 107, 107, 0.2)',
+            border: '#06D6A0',
+            border2: '#FF6B6B',
+        };
+
+        const tooltipPlugin = {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+        
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 < maxWidth) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+
+        new Chart(document.getElementById('monthlyRevenueChart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{
+                    label: 'Iuran Wajib Aktual',
+                    data: [37, 23.5, 23.3, 36.3, 21, 29],
+                    borderColor: energeticPlayfulPalette.blue,
+                    backgroundColor: energeticPlayfulPalette.blue.replace(')', ', 0.2)'),
+                    fill: false,
+                    tension: 0.3,
+                    borderWidth: 3
+                }, {
+                    label: 'Peramalan',
+                    data: [34, 24.5, 23.3, 31.5, 27, 29],
+                    borderColor: energeticPlayfulPalette.green,
+                    backgroundColor: energeticPlayfulPalette.green.replace(')', ', 0.2)'),
+                    borderDash: [5, 5],
+                    fill: false,
+                    tension: 0.3,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: tooltipPlugin,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Penerimaan (dalam Juta Rupiah)'
+                        }
+                    },
+                    x: {
+                         title: {
+                            display: true,
+                            text: 'Bulan di 2025'
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+            }
+        });
+        
+        new Chart(document.getElementById('vehicleGrowthChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Total Kendaraan (Balikpapan, 2022-23)', 'Kendaraan Baru (Kaltim, per bulan 2024)'],
+                datasets: [{
+                    label: 'Pertumbuhan Kendaraan Pribadi',
+                    data: [90, 100],
+                    backgroundColor: energeticPlayfulPalette.red,
+                    borderColor: energeticPlayfulPalette.red,
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pertumbuhan Bus Umum (Balikpapan, 2023-24)',
+                    data: [14.8, 0], 
+                    backgroundColor: energeticPlayfulPalette.blue,
+                    borderColor: energeticPlayfulPalette.blue,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                     ...tooltipPlugin,
+                    title: {
+                        display: true,
+                        text: 'Persentase Pertumbuhan (%)'
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Pertumbuhan (%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('seaPassengerChart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan-Mei 2024', 'Jan-Mei 2025'],
+                datasets: [{
+                    label: 'Jumlah Kumulatif Penumpang Laut Domestik',
+                    data: [203829, 277073],
+                    backgroundColor: energeticPlayfulPalette.background,
+                    borderColor: energeticPlayfulPalette.border,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...tooltipPlugin,
+                     title: {
+                        display: true,
+                        text: 'Pertumbuhan Penumpang Kumulatif'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Jumlah Penumpang'
+                        }
+                    }
+                }
+            }
+        });
+
+        async function callGemini(prompt) {
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            let response;
+            let result;
+            let retries = 0;
+            const maxRetries = 5;
+            let delay = 1000;
+
+            while (retries < maxRetries) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    result = await response.json();
+                    if (result && result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        throw new Error('Invalid response structure');
+                    }
+                } catch (error) {
+                    retries++;
+                    if (retries < maxRetries) {
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2;
+                    } else {
+                        console.error('Failed to fetch from Gemini API after multiple retries:', error);
+                        return "Maaf, terjadi kesalahan saat memuat data. Silakan coba lagi.";
+                    }
+                }
+            }
+        }
+
+        document.getElementById('analyzeChartBtn').addEventListener('click', async () => {
+            const insightBox = document.getElementById('monthlyRevenueInsight');
+            const contentDiv = document.getElementById('insightContent');
+            const loader = document.getElementById('insightLoader');
+            
+            insightBox.classList.remove('hidden');
+            contentDiv.textContent = '';
+            loader.classList.remove('hidden');
+
+            const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
+            const actualData = [37, 23.5, 23.3, 36.3, 21, 29];
+            const forecastData = [34, 24.5, 23.3, 31.5, 27, 29];
+            const prompt = `Berdasarkan data penerimaan Iuran Wajib (dalam Juta Rupiah) PT Jasa Raharja Kalimantan Timur pada tahun 2025:
+            - Bulan: ${labels.join(', ')}
+            - Data Aktual: ${actualData.join(', ')}
+            - Data Peramalan: ${forecastData.join(', ')}
+            Berikan analisis naratif profesional yang ringkas mengenai tren yang terlihat, puncak, dan kemungkinan penyebabnya. Sertakan perbandingan antara data aktual dan peramalan. Tuliskan dalam Bahasa Indonesia.`;
+
+            const narrative = await callGemini(prompt);
+            loader.classList.add('hidden');
+            contentDiv.textContent = narrative;
+        });
+
+        document.getElementById('generateRecommendationsBtn').addEventListener('click', async () => {
+            const recommendationsBox = document.getElementById('recommendationsContainer');
+            const contentDiv = document.getElementById('recommendationsContent');
+            const loader = document.getElementById('recommendationsLoader');
+
+            recommendationsBox.classList.remove('hidden');
+            contentDiv.textContent = '';
+            loader.classList.remove('hidden');
+
+            const prompt = `Berdasarkan informasi berikut mengenai PT Jasa Raharja Kalimantan Timur dan dampak IKN:
+            1. Proyeksi Pertumbuhan Ekonomi Kaltim 2025: 6.5-7%.
+            2. Pertumbuhan Penumpang Laut (Jan-Mei 2025): +35.94%
+            3. Tren IWKBU: Pertumbuhan kendaraan pribadi lebih cepat dari angkutan umum, ditambah pengecualian iuran "dalam kota".
+            4. Tren IWKL: Pertumbuhan penumpang laut sangat kuat, didorong oleh logistik IKN dan potensi pariwisata.
+            5. Kebijakan "Gratispol" 2025: Pemutihan pajak kendaraan bermotor, tidak termasuk Sumbangan Wajib.
+            
+            Berikan tiga rekomendasi strategis dan dapat ditindaklanjuti untuk PT Jasa Raharja dalam mengoptimalkan penerimaan dari IWKBU dan IWKL. Format rekomendasi sebagai poin-poin. Tuliskan dalam Bahasa Indonesia.`;
+            
+            const recommendations = await callGemini(prompt);
+            loader.classList.add('hidden');
+            contentDiv.textContent = recommendations;
+        });
+    </script>
+</body>
+</html>
